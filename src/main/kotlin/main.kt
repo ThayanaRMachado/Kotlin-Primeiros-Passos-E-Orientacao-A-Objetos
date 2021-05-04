@@ -1,7 +1,7 @@
-fun main(){
+fun main() {
     println("Bem vindo ao Bytebank!")
     var i = 0;
-    while (i < 5){
+    while (i < 5) {
         val titular: String = "Alex $i"
         val numeroConta: Int = 1000 + i
         var saldo: Double = i + 10.0
@@ -11,9 +11,16 @@ fun main(){
         println("saldo da conta $saldo")
         println()
         i++
-    }
 
-   /* for (i in 5 downTo 1){
+        loop@ for (i in 1..100) {
+            println("i $i")
+            for (j in 1..100) {
+                println("j $j")
+                if (j == 5) break@loop
+            }
+        }
+
+        /* for (i in 5 downTo 1){
         val titular: String = "Alex $i"
         val numeroConta: Int = 1000 + i
         var saldo: Double = i + 10.0
@@ -25,16 +32,18 @@ fun main(){
 
     testaCondicoes(saldo)
 */
-}
-
-/*
-fun testaCondicoes(saldo: Double){
-    if (saldo > 0.0){
-        println("conta é positiva")
-    } else if (saldo == 0.0){
-        println("conta é neutra")
-    } else {
-        println("conta é negativa")
     }
 
-}*/
+    fun testaCondicoes(saldo: Double) {
+        if (saldo > 0.0) {
+            println("conta é positiva")
+        } else if (saldo == 0.0) {
+            println("conta é neutra")
+        } else {
+            println("conta é negativa")
+        }
+
+    }
+
+
+}
