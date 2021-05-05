@@ -2,14 +2,9 @@ import kotlin.reflect.jvm.internal.impl.resolve.constants.ULongValue
 
 fun main() {
     println("Bem vindo ao Bytebank")
-    val contaAlex = Conta()
-    contaAlex.titular = "Alex"
-    contaAlex.numero = 1000
+    val contaAlex = Conta("Alex", 1000)
     contaAlex.deposita(200.0)
-
-    val contaFran = Conta()
-    contaFran.titular = "Fran"
-    contaFran.numero = 1001
+    val contaFran = Conta("Fran", 1001)
     contaFran.deposita(300.0)
 
     println(contaFran.titular)
@@ -56,9 +51,11 @@ fun main() {
     println(contaFran.saldo)
 }
 
-class Conta {
-    var titular = ""
-    var numero = 0
+class Conta(
+    var titular: String,
+    var numero: Int
+) {
+
     var saldo = 0.0
         private set
 
@@ -92,9 +89,9 @@ fun testaCopiasEReferencias() {
     println("numeroX $numeroX")
     println("numeroY $numeroY")
 
-    val contaJoao = Conta()
+    val contaJoao = Conta("João", 1002)
     contaJoao.titular = "João"
-    var contaMaria = Conta()
+    var contaMaria = Conta("Maria", 1003)
     contaMaria.titular = "Maria"
     contaJoao.titular = "João"
 
