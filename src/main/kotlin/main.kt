@@ -5,22 +5,22 @@ fun main() {
     val contaAlex = Conta()
     contaAlex.titular = "Alex"
     contaAlex.numero = 1000
-    contaAlex.setSaldo(-200.0)
+    contaAlex.deposita(200.0)
 
     val contaFran = Conta()
     contaFran.titular = "Fran"
     contaFran.numero = 1001
-    contaFran.setSaldo(300.0)
+    contaFran.deposita(300.0)
 
     println(contaFran.titular)
     println(contaFran.numero)
-    println(contaFran.getSaldo())
+    println(contaFran.saldo)
 
     println(contaAlex.titular)
     println(contaAlex.numero)
-    println(contaAlex.getSaldo())
+    println(contaAlex.saldo)
 
-    /*println("depositando na conta do Alex")
+    println("depositando na conta do Alex")
     contaAlex.deposita(50.0)
     println(contaAlex.saldo)
 
@@ -28,44 +28,48 @@ fun main() {
     contaFran.deposita(70.0)
     println(contaFran.saldo)
 
-    println("Sacando na conta do Alex")
+    println("sacando na conta do Alex")
     contaAlex.saca(250.0)
     println(contaAlex.saldo)
 
-    println("Sacando na conta da Fran")
+    println("sacando na conta da Fran")
     contaFran.saca(100.0)
     println(contaFran.saldo)
 
-    println("Saque em excesso na conta do Alex")
+    println("saque em excesso na conta do Alex")
     contaAlex.saca(100.0)
     println(contaAlex.saldo)
 
-    println("Saque em excesso na conta da Fran")
+    println("saque em excesso na conta da Fran")
     contaFran.saca(500.0)
     println(contaFran.saldo)
 
-    println("Transferência para a conta da Fran para o Alex")
-    if (contaFran.transfere(300.0, contaAlex)){
-        println("Transferência bem sucedida")
+    println("Transferência da conta da Fran para o Alex")
+
+    if (contaFran.transfere(300.0, contaAlex)) {
+        println("Transferência sucedida")
     } else {
-        println("Falha na Transferência")
+        println("Falha na transferência")
     }
 
     println(contaAlex.saldo)
     println(contaFran.saldo)
-*/}
+}
 
 class Conta {
     var titular = ""
     var numero = 0
-    private var saldo = 0.0
+    var saldo = 0.0
+        private set
 
-    fun deposita(valor: Double){
-        this.saldo += valor
+    fun deposita(valor: Double) {
+        if (valor > 0) {
+            this.saldo += valor
+        }
     }
 
-    fun saca(valor: Double){
-        if(saldo >= valor){
+    fun saca(valor: Double) {
+        if (saldo >= valor) {
             saldo -= valor
         }
     }
@@ -78,19 +82,9 @@ class Conta {
         }
         return false
     }
-
-    fun getSaldo(): Double{
-        return saldo
-    }
-
-    fun setSaldo(valor: Double){
-        if (valor > 0){
-            saldo = valor
-        }
-    }
 }
 
-fun testaCopiasEReferencias(){
+fun testaCopiasEReferencias() {
     val numeroX = 10
     var numeroY = numeroX
     numeroY++
@@ -104,16 +98,16 @@ fun testaCopiasEReferencias(){
     contaMaria.titular = "Maria"
     contaJoao.titular = "João"
 
-    println("titular conta joao: ${contaJoao.titular}")
-    println("titular conta maria: ${contaMaria.titular}")
+    println("titutar conta joao: ${contaJoao.titular}")
+    println("titutar conta maria: ${contaMaria.titular}")
 
     println(contaJoao)
     println(contaMaria)
 }
 
-fun testaLacos(){
+fun testaLacos() {
     var i = 0
-    while(i < 5){
+    while (i < 5) {
         val titular: String = "Alex $i"
         val numeroConta: Int = 1000 + i
         var saldo = i + 10.0
